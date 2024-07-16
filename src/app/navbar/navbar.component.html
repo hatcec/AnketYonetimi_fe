@@ -1,0 +1,9 @@
+<nav>
+    <ul>
+        <li *ngIf = "!isAuthenticated"><a routerLink = "/login">Ates</a></li>
+        <li *ngIf = "isAuthenticated"><a routerLink = "/question">Profile</a></li>
+        <li *ngIf = "isAdmin"><a routerLink = "/question">Question</a></li>
+        <li *ngIf = "!isAuthenticated"><a routerLink = "/login">Login</a></li>
+        <li *ngIf = "isAuthenticated"><a routerLink = "" (click)="logout()">Logout</a></li>
+    </ul>
+</nav>

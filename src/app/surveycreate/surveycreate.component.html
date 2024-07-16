@@ -1,0 +1,52 @@
+<mat-form-field appearance="fill">
+    <mat-label>Seçenekler</mat-label>
+    <mat-select [formControl]="selections" multiple>
+      <mat-option *ngFor="let option of options" [value]="option">{{option.questionText}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  
+  <mat-form-field appearance="fill">
+    <mat-label>İsim</mat-label>
+    <input matInput [formControl]="nameControl">
+  </mat-form-field>
+  
+  <button mat-raised-button (click)="saveSelections()">Kaydet</button>
+<!-- <div>
+  <h2>Create New Survey</h2>
+  <input [(ngModel)]="newSurvey.name" placeholder="Survey Title" required>
+  <div>
+    <h3>Available Questions</h3>
+    <div *ngFor="let question of questions">
+      <input type="checkbox" (change)="onCheckboxChange($event, question.id)" [value]="question.id"> {{ question.questionText }}
+    </div>
+  </div>
+  <button (click)="createSurvey()" [disabled]="!newSurvey.name || selectedQuestions.size === 0">Create Survey</button>
+</div> -->
+<!-- <div *ngIf="allQuestion.length">
+    <ul>
+        <li>
+            <label for="name">Survey Name:</label>
+            <input type="text" id="name" [(ngModel)]="name" name="name" required>
+        </li>
+        <li>
+            <label for="date">Survey Date:</label>
+            <input type="date" id="date" [(ngModel)]="createdDate" name="date" [value]="today" required>
+        </li>
+        <label >Please enter 5 survey questions</label>
+        <li *ngFor="let item of allQuestion" (click)="onSelect(item)">
+            <input type="checkbox" [checked]="selectedQuestion.includes(item)">
+            {{ item.questionText }}
+        </li>
+
+    </ul>
+    <button class="btn bsb-btn-xl btn-primary" type="submit" (click)="addSurvey()">
+        Sign up</button>
+</div>
+<div *ngIf="selectedQuestion.length">
+    <h3>Selected Question:</h3>
+    <ul>
+        <li *ngFor="let item of selectedQuestion">
+            {{ item.questionText }}
+        </li>
+    </ul>
+</div> -->

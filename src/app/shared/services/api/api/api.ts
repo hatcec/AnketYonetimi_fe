@@ -1,0 +1,13 @@
+export * from './authentication-controller.service';
+import { AuthenticationControllerService } from './authentication-controller.service';
+export * from './authentication-controller.serviceInterface';
+export * from './participation-controller.service';
+import { ParticipationControllerService } from './participation-controller.service';
+export * from './participation-controller.serviceInterface';
+export * from './question-controller.service';
+import { QuestionControllerService } from './question-controller.service';
+export * from './question-controller.serviceInterface';
+export * from './survey-controller.service';
+import { SurveyControllerService } from './survey-controller.service';
+export * from './survey-controller.serviceInterface';
+export const APIS = [AuthenticationControllerService, ParticipationControllerService, QuestionControllerService, SurveyControllerService];
