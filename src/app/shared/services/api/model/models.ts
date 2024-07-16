@@ -8,6 +8,7 @@ export * from './question';
 export * from './question-request';
 export * from './question-response';
 export * from './survey';
+export * from './survey-question';
 export * from './survey-request';
 export * from './survey-response';
 export * from './update-survey400-response';

@@ -6,16 +6,11 @@ import { Observable } from 'rxjs';
 })
 export class SurveyServiceService {
 
-  private baseUrl = 'http://localhost:8081/api/v1/survey';
-  private baseUrl1 = 'http://localhost:8081/api/v1/question';
+  private apiUrl = 'http://localhost:8081/api/v1/survey';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  getQuestions(): Observable<any> {
-    return this.http.get(`${this.baseUrl1}/get/all`);
-  }
-
-  addSurvey(surveyRequest: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/add`, surveyRequest);
+  createSurvey(surveyData: any): Observable<any> {
+    return this.http.post(this.apiUrl, surveyData);
   }
 }

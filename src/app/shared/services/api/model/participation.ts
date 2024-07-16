@@ -18,14 +18,5 @@ export interface Participation {
     user?: User;
     survey?: Survey;
     answers?: Array<string>;
-    role?: Participation.RoleEnum;
 }
-export namespace Participation {
-    export type RoleEnum = 'USER' | 'ADMIN';
-    export const RoleEnum = {
-        User: 'USER' as RoleEnum,
-        Admin: 'ADMIN' as RoleEnum
-    };
-}
-
 

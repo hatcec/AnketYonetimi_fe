@@ -21,16 +21,18 @@ import { UpdateSurvey400Response } from '../model/models';
 import { Configuration }                                     from '../configuration';
 
 
-export interface AddParticipationRequestParams {
-    participationRequest: ParticipationRequest;
-}
-
 export interface DeleteBrandRequestParams {
     id: number;
 }
 
 export interface GetParticipationByIdRequestParams {
     id: number;
+}
+
+export interface ParticipateInSurveyRequestParams {
+    surveyId: number;
+    userId: number;
+    requestBody: Array<string>;
 }
 
 export interface UpdateParticipationRequestParams {
@@ -41,13 +43,6 @@ export interface UpdateParticipationRequestParams {
 export interface ParticipationControllerServiceInterface {
     defaultHeaders: HttpHeaders;
     configuration: Configuration;
-
-    /**
-     * 
-     * 
-* @param requestParameters
-     */
-    addParticipation(requestParameters: AddParticipationRequestParams, extraHttpRequestParams?: any): Observable<ParticipationResponse>;
 
     /**
      * 
@@ -68,6 +63,13 @@ export interface ParticipationControllerServiceInterface {
 * @param requestParameters
      */
     getParticipationById(requestParameters: GetParticipationByIdRequestParams, extraHttpRequestParams?: any): Observable<ParticipationResponse>;
+
+    /**
+     * 
+     * 
+* @param requestParameters
+     */
+    participateInSurvey(requestParameters: ParticipateInSurveyRequestParams, extraHttpRequestParams?: any): Observable<{}>;
 
     /**
      * 

@@ -3,7 +3,7 @@ import {  QuestionControllerService,  SurveyControllerService } from '../shared/
 import { CommonModule } from '@angular/common';
 
 import { ButtonComponent } from '../button/button.component';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SurveyServiceService } from '../survey-service.service';
 import { DemoAngularMaterailModule } from '../DemoAngularMaterialModule';
 import { HttpClient } from '@angular/common/http';
@@ -16,30 +16,49 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: './surveycreate.component.scss'
 })
 export class SurveycreateComponent implements OnInit {
-  selections = new FormControl();
-  nameControl = new FormControl();
-  options: any[] = [];
+  surveyForm!: FormGroup;
+  questions: any[] = []; // Bu alanı mevcut sorularla doldurun.
 
-  constructor(private http: HttpClient, private surveyService:SurveyServiceService) {}
+  constructor(private fb: FormBuilder, private surveyService: SurveyServiceService,
+    private questionService:QuestionControllerService
+  ) {}
 
   ngOnInit() {
-    // Dropdown list için verileri backend'den çekmek
-    this.surveyService.getQuestions().subscribe(data => {
-      this.options = data;
+    this.surveyForm = this.fb.group({
+      name: [''],
+      questionIds: [[]]
     });
+
+    // Mevcut soruları yükleyin (örneğin bir service çağrısı ile)
+    this.loadQuestions();
   }
 
-  saveSelections() {
-    // Seçilen verileri ve ismi backend'e göndermek
-    const selectedOptions = this.selections.value;
-    const name = this.nameControl.value;
-    const payload = {
-      name: name,
-      selections: selectedOptions
-    };
-    this.surveyService.addSurvey( payload).subscribe(response => {
-      console.log('Veriler kaydedildi:', response);
-      
-    });
+  loadQuestions() {
+    // Service ile backend'den soruları çekin
+    // Örneğin:
+    this.questionService.getAllQuestion().subscribe(data => {
+       this.questions = data;
+     });
+  }
+
+  onQuestionChange(event: any, questionId: number) {
+    const questionIds = this.surveyForm.get('questionIds')?.value as number[];
+    if (event.target.checked) {
+      questionIds.push(questionId);
+    } else {
+      const index = questionIds.indexOf(questionId);
+      if (index > -1) {
+        questionIds.splice(index, 1);
+      }
+    }
+    this.surveyForm.get('questionIds')?.setValue(questionIds);
+  }
+
+  onSubmit() {
+    if (this.surveyForm.valid) {
+      this.surveyService.createSurvey(this.surveyForm.value).subscribe(response => {
+        console.log('Survey created successfully', response);
+      });
+    }
   }
 }

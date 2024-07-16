@@ -22,10 +22,10 @@ export interface User {
     role?: User.RoleEnum;
     enabled?: boolean;
     accountNonLocked?: boolean;
-    authorities?: Array<GrantedAuthority>;
-    username?: string;
     accountNonExpired?: boolean;
     credentialsNonExpired?: boolean;
+    authorities?: Array<GrantedAuthority>;
+    username?: string;
 }
 export namespace User {
     export type RoleEnum = 'USER' | 'ADMIN';

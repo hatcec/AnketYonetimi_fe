@@ -24,6 +24,7 @@ model/participation.ts
 model/question-request.ts
 model/question-response.ts
 model/question.ts
+model/survey-question.ts
 model/survey-request.ts
 model/survey-response.ts
 model/survey.ts

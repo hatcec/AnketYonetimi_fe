@@ -13,6 +13,7 @@ import { HttpHeaders }                                       from '@angular/comm
 
 import { Observable }                                        from 'rxjs';
 
+import { Survey } from '../model/models';
 import { SurveyRequest } from '../model/models';
 import { SurveyResponse } from '../model/models';
 import { UpdateSurvey400Response } from '../model/models';
@@ -21,16 +22,16 @@ import { UpdateSurvey400Response } from '../model/models';
 import { Configuration }                                     from '../configuration';
 
 
+export interface CreateSurveyRequestParams {
+    surveyRequest: SurveyRequest;
+}
+
 export interface DeleteSurveyRequestParams {
     id: number;
 }
 
 export interface GetSurveyByIdRequestParams {
     id: number;
-}
-
-export interface SaveSelectionsRequestParams {
-    surveyRequest: SurveyRequest;
 }
 
 export interface UpdateSurveyRequestParams {
@@ -41,6 +42,13 @@ export interface UpdateSurveyRequestParams {
 export interface SurveyControllerServiceInterface {
     defaultHeaders: HttpHeaders;
     configuration: Configuration;
+
+    /**
+     * 
+     * 
+* @param requestParameters
+     */
+    createSurvey(requestParameters: CreateSurveyRequestParams, extraHttpRequestParams?: any): Observable<Survey>;
 
     /**
      * 
@@ -61,13 +69,6 @@ export interface SurveyControllerServiceInterface {
 * @param requestParameters
      */
     getSurveyById(requestParameters: GetSurveyByIdRequestParams, extraHttpRequestParams?: any): Observable<SurveyResponse>;
-
-    /**
-     * 
-     * 
-* @param requestParameters
-     */
-    saveSelections(requestParameters: SaveSelectionsRequestParams, extraHttpRequestParams?: any): Observable<string>;
 
     /**
      * 

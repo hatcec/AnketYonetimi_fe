@@ -1,1 +1,7 @@
-<p>surveylist works!</p>
+<h2>Existing Surveys</h2>
+<ul>
+  <li *ngFor="let survey of surveys">
+    {{ survey.name }} - {{ survey.createdDate}}
+    <button *ngIf="survey.id !== undefined" (click)="participate(survey.id)">Katıl</button>
+  </li>
+</ul>

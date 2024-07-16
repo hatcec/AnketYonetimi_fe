@@ -9,11 +9,11 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { Question } from './question';
 
 
 export interface SurveyRequest { 
-    questionIds?: Array<Question>;
     name?: string;
+    questionIds?: Array<number>;
+    createdDate?: string;
 }
 

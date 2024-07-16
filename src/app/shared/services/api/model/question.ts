@@ -9,10 +9,12 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { SurveyQuestion } from './survey-question';
 
 
 export interface Question { 
     id?: number;
     questionText?: string;
+    surveyQuestions?: Array<SurveyQuestion>;
 }
 
